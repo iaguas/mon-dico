@@ -1,5 +1,8 @@
 {% load staticfiles %}
 
+<!-- https://ultimatedjango.com/learn-django/lessons/create-the-login-template/
+     https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Authentication v-->
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -11,25 +14,34 @@
 </head>
 <body class="bg-dark">
     <div class="container">
-        <div class="card card-login mx-5 mt-5">
+        <div class="card card-login mx-auto mt-5" style="max-width: 25rem">
             <div class="card-header text-center text-dark" style="font-size: 24px"><i class="fas fa-book"></i> MonDico</div>
             <div class="card-body">
-                <form>
+                <form id="login-form" method="post">
+                    {% csrf_token %}
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Utilisateur</label>
-                        <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Entrez votre utilisateur">
+                        <label for="id_username">Utilisateur</label>
+                        <input class="form-control" id="id_username" name="username" type="text" placeholder="Entrez votre utilisateur">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Mot de passe</label>
-                        <input class="form-control" id="exampleInputPassword1" type="password" placeholder="Entrez votre mot de passe">
+                        <label for="id_password">Mot de passe</label>
+                        <input class="form-control" id="id_password" name="password" type="password" placeholder="Entrez votre mot de passe">
                     </div>
+
+                    {% if form.errors %}
+                    <p class="alert alert-danger">
+                        Vos utilisateur et mot de passe ne sont pas correctes.
+                        SVP, reécrivez-les.
+                    </p>
+                    {% endif %}
+
                     <!--<div class="form-group">
                         <div class="form-check">
                             <label class="form-check-label">
                                 <input class="form-check-input" type="checkbox"> Remember Password</label>
                         </div>
                     </div>-->
-                    <a class="btn btn-primary btn-block" href="/">Login</a>
+                    <button class="btn btn-primary btn-block" type="submit">Se connecter</button>
                 </form>
                 <!--<div class="text-center">
                     <a class="d-block small mt-3" href="register.html">Register an Account</a>

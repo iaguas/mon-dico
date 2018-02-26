@@ -12,3 +12,11 @@ footer {
     background-color: #424242;
     clear: both;
 }
+
+.card-login {
+    max-width: 25rem;
+}
+
+.h1 {
+    font-size: 100%;
+}

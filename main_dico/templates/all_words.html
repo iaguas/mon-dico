@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<h2>Léxique</h2>
+
+<div>
+    {% if words%}
+    <table class="table">
+        <tr>
+            <th>Mot</th>
+            <th>Phrase</th>
+        </tr>
+        {% for word in words%}
+        <tr>
+            <td>{{ word.word }}</td>
+            <td>{{ word.sentence }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <div class="alert alert-info" role="alert">
+        Il n'a pas des mots.
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
